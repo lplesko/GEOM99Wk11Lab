@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Geom99: Add Web Map Service (WMS)</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css" rel="stylesheet" />
+<style>
+	body { margin: 0; padding: 0; }
+	#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+  // This code is derived from the example at: https://docs.mapbox.com/mapbox-gl-js/example/wms/
+	mapboxgl.accessToken = 'sk.eyJ1IjoibHBsZXNrbyIsImEiOiJjazdvc3dxdzkwZDZhM2xtaTMzaWw0dHA5In0.GZTRPJcPGN-VRFR-tM8zng';
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/light-v10',
+      zoom: 3,
+      center: [-74.5447, 40.6892]
+    });
+ 
+    map.on('load', function() {
+      map.addSource('wms-test-source', {
+        'type': 'raster',
+        'tiles': [
+https://luna.flemingcollege.ca/arcgis/rest/services/Geom99on/LPleskoCanadaPro/MapServer/export?bbox={bbox-epsg-3857}&bboxSR=EPSG%3A3857&layers=show%3A0&layerDefs=&size=1277%2C390&imageSR=%7B%22wkt%22%3A%22PROJCS%5B%5C%22WGS_1984_Web_Mercator_Auxiliary_Sphere%5C%22%2CGEOGCS%5B%5C%22GCS_WGS_1984%5C%22%2CDATUM%5B%5C%22D_WGS_1984%5C%22%2CSPHEROID%5B%5C%22WGS_1984%5C%22%2C6378137.0%2C298.257223563%5D%5D%2CPRIMEM%5B%5C%22Greenwich%5C%22%2C0.0%5D%2CUNIT%5B%5C%22Degree%5C%22%2C0.0174532925199433%5D%5D%2CPROJECTION%5B%5C%22Mercator_Auxiliary_Sphere%5C%22%5D%2CPARAMETER%5B%5C%22False_Easting%5C%22%2C0.0%5D%2CPARAMETER%5B%5C%22False_Northing%5C%22%2C0.0%5D%2CPARAMETER%5B%5C%22Central_Meridian%5C%22%2C-62.95115784146585%5D%2CPARAMETER%5B%5C%22Standard_Parallel_1%5C%22%2C0.0%5D%2CPARAMETER%5B%5C%22Auxiliary_Sphere_Type%5C%22%2C0.0%5D%2CUNIT%5B%5C%22Meter%5C%22%2C1.0%5D%5D%22%7D&historicMoment=&format=png32&transparent=true&dpi=96&time=&layerTimeOptions=&dynamicLayers=&gdbVersion=&mapScale=&rotation=&datumTransformations=&layerParameterValues=&mapRangeValues=&layerRangeValues=&f=image
+        'tileSize': 256
+      });
+      map.addLayer(
+        {
+          'id': 'wms-test-layer',
+          'type': 'raster',
+          'source': 'wms-test-source',
+          'paint': {}
+        },
+        'aeroway-line'
+      );
+    });
+</script>
+ 
+</body>
+</html>
