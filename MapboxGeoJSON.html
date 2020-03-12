@@ -29,15 +29,15 @@
   var url = 'https://luna.flemingcollege.ca/arcgis/rest/services/Geom99on/LPleskoCanadaPro/MapServer/0/query?where=PRNAME%3D%27Ontario%27&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=&returnGeometry=true&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=&having=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&historicMoment=&returnDistinctValues=false&resultOffset=&resultRecordCount=&queryByDistance=&returnExtentOnly=false&datumTransformation=&parameterValues=&rangeValues=&quantizationParameters=&featureEncoding=esriDefault&f=geojson';
   map.on('load', function() {
     window.setInterval(function() {
-      map.getSource('drone').setData(url);
+      map.getSource('canada').setData(url);
     }, 2000);
  
-    map.addSource('drone', { type: 'geojson', data: url });
+    map.addSource('canada', { type: 'geojson', data: url });
     map.addLayer({
-      'id': 'drone',
-      'type': 'symbol',
-      'source': 'drone',
-      'layout': {
+      'id': 'canada',
+      'type': 'fill',
+      'source': 'canada',
+      'layout': {},
       'paint': {'fill-color': '#088','fill-opacity': 0.8}
     });
   });
