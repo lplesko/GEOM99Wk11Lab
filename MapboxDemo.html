@@ -15,8 +15,8 @@
 <div id="map"></div>
 <script>
   // This code is derived from the example at: https://docs.mapbox.com/mapbox-gl-js/example/wms/
-	// Tried creating my own access token, did not work. Trying now with the default public token on Mapbox
-	mapboxgl.accessToken = 'pk.eyJ1IjoibHBsZXNrbyIsImEiOiJjazdnNmFkZ2YwMjd2M2ZtdTd0MnpqMGd4In0.xsh1nBMx5dh089PiwV2aMQ';
+	// This uses my own access token, created at the following link for THIS webpage only: https://account.mapbox.com/access-tokens/create/
+	mapboxgl.accessToken = 'sk.eyJ1IjoibHBsZXNrbyIsImEiOiJjazdvc3dxdzkwZDZhM2xtaTMzaWw0dHA5In0.GZTRPJcPGN-VRFR-tM8zng';
     var map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/light-v10',
@@ -28,8 +28,9 @@
       map.addSource('wms-test-source', {
         'type': 'raster',
         'tiles': [
-https://luna.flemingcollege.ca/arcgis/rest/services/Geom99on/LPleskoCanadaPro/MapServer/export?bbox={bbox-epsg-3857}&bboxSR=EPSG%3A3857&layers=show%3A0&layerDefs=&size=256%2C256&imageSR=&format=png32&transparent=true&dpi=&time=&layerTimeOptions=&dynamicLayers=&gdbVersion=&mapScale=&f=image
-        'tileSize': 256
+		'https://luna.flemingcollege.ca/arcgis/rest/services/Geom99on/LPleskoCanadaPro/MapServer/export?bbox={bbox-epsg-3857}&bboxSR=EPSG%3A3857&layers=show%3A0&layerDefs=&size=256%2C256&imageSR=&format=png32&transparent=true&dpi=&time=&layerTimeOptions=&dynamicLayers=&gdbVersion=&mapScale=&f=image'
+        ],
+	'tileSize': 256
       });
       map.addLayer(
         {
